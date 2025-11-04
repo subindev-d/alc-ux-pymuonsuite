@@ -7,7 +7,7 @@ from ipywidgets import dlink
 
 from aiidalab_alc.resources import ComputationalResourcesModel
 from aiidalab_alc.results import ResultsModel
-from aiidalab_alc.structure import StructureStepModel
+from aiidalab_alc.structure import StructureStepModel, ChargeDensityStepModel
 from aiidalab_alc.workflow import ChemShellWorkflowModel
 
 
@@ -20,6 +20,7 @@ class MainAppModel(tl.HasTraits):
         """MainAppModel constructor."""
         super().__init__()
         self.structure_model = StructureStepModel()
+        self.charge_density_model = ChargeDensityStepModel()
         self.workflow_model = ChemShellWorkflowModel()
         self.resource_model = ComputationalResourcesModel()
         self.results_model = ResultsModel()

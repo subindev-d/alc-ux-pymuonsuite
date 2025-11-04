@@ -12,7 +12,7 @@ from aiidalab_alc.resources import (
     ComputationalResourcesWizardStep,
 )
 from aiidalab_alc.results import ResultsWizardStep
-from aiidalab_alc.structure import StructureWizardStep
+from aiidalab_alc.structure import ChargeDensityWizardStep, StructureWizardStep
 from aiidalab_alc.workflow import MethodWizardStep
 
 
@@ -89,6 +89,7 @@ class WizardWidget(ipw.VBox):
             Keyword arguments passed to the `ipywidgets.VBox.__init__()`.
         """
         self.structureStep = StructureWizardStep(model.structure_model)
+        self.chargeDensityStep = ChargeDensityWizardStep(model.structure_model)
         self.workflowStep = MethodWizardStep(model.workflow_model)
         self.compResourceStep = ComputationalResourcesWizardStep(model.resource_model)
         self.results_step = ResultsWizardStep(model.results_model)
@@ -96,6 +97,7 @@ class WizardWidget(ipw.VBox):
         self._wizard_app_widget = awb.WizardAppWidget(
             steps=[
                 ("Select Structure", self.structureStep),
+                ("Upload Charge Density", self.chargeDensityStep),
                 ("Configure Workflow", self.workflowStep),
                 ("Configure Computational Resources", self.compResourceStep),
                 ("Results", self.results_step),
