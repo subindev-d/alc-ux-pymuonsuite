@@ -128,23 +128,6 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
         )
 
         self.tabs.children = [self.file_input_widget, self.database_widget]
-
-        self.model.observe(self._on_file_upload, "structure_file")
-
-    def _on_file_upload(self, change=None):
-        """When file upload button is pressed."""
-        if self.model.has_file:
-            structure = self._get_ase_object_from_file(
-                self.model.structure_file.filename, self.model.structure_file.content
-            )
-            if structure:
-                self.viewer = awb.viewers.StructureDataViewer(structure=structure)
-            else:
-                self.viewer = ipw.HTML(
-                    "<p>Could not visualise structure from file...</p>"
-                )
-            self._update_children()
-        return
     
     def submit_structure(self, _):
         """Submit the structure step."""
