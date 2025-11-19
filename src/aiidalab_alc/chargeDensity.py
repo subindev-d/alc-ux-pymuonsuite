@@ -76,21 +76,6 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
             self.file_uploader,
         ]
         ipw.dlink((self.file_uploader, "file"), (self.model, "structure_file"))
-
-        # # AiiDA database
-        # self.tabs.set_title(1, "AiiDA Database")
-        # self.database_widget = AiiDADatabaseWidget(
-        #     title="AiiDA Database",
-        #     query=[
-        #         SinglefileData,
-        #     ],
-        # )
-        # ipw.dlink(
-        #     (self.database_widget, "data_object"),
-        #     (self.model, "structure_file"),
-        # )
-
-        self.children = [self.file_input_widget]
     
     def submit_structure(self, _):
         """Submit the structure step."""
