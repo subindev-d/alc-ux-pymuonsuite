@@ -3,7 +3,6 @@ import ipywidgets as ipw
 import traitlets as tl
 from aiida.orm import SinglefileData, StructureData
 
-from aiidalab_alc.common.database import AiiDADatabaseWidget
 from aiidalab_alc.common.file_handling import FileUploadWidget
 
 class ChargeDensityStepModel(tl.HasTraits):
@@ -14,26 +13,15 @@ class ChargeDensityStepModel(tl.HasTraits):
     step in the app's configuration wizard.
     """
 
-    charge_density = tl.Instance(StructureData, allow_none=True)
     charge_density_file = tl.Instance(SinglefileData, allow_none=True)
     submitted = tl.Bool(False).tag(sync=True)
 
-    @property
-    def has_charge_density(self) -> bool:
-        """True if a StructureData object has been attached to the model."""
-        return self.charge_density is not None
 
     @property
     def has_file(self) -> bool:
         """True if a raw structure file object has been attached to the model."""
         return self.charge_density_file is not None
 
-    @property
-    def is_periodic(self) -> bool:
-        """True if the attached StructureData object is a periodic structure."""
-        if self.has_charge_density:
-            return any(self.charge_density.pbc)
-        return False
 
 class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
     """
@@ -81,7 +69,6 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
         """Submit the structure step."""
         if self.model.has_file or self.model.has_structure:
             self.file_uploader.disable(True)
-            self.database_widget.disable(True)
             self.submit_btn.disabled = True
             self.submit_btn.description = "Submitted"
             self.model.submitted = True
