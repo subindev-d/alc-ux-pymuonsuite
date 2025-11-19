@@ -7,7 +7,8 @@ from ipywidgets import dlink
 
 from aiidalab_alc.resources import ComputationalResourcesModel
 from aiidalab_alc.results import ResultsModel
-from aiidalab_alc.structure import StructureStepModel, ChargeDensityStepModel
+from aiidalab_alc.structure import StructureStepModel
+from aiidalab_alc.chargeDensity import ChargeDensityStepModel
 from aiidalab_alc.workflow import ChemShellWorkflowModel
 
 

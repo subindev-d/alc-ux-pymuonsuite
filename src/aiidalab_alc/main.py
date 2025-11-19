@@ -12,7 +12,8 @@ from aiidalab_alc.resources import (
     ComputationalResourcesWizardStep,
 )
 from aiidalab_alc.results import ResultsWizardStep
-from aiidalab_alc.structure import ChargeDensityWizardStep, StructureWizardStep
+from aiidalab_alc.structure import StructureWizardStep
+from aiidalab_alc.chargeDensity import ChargeDensityWizardStep
 from aiidalab_alc.workflow import MethodWizardStep
 
 
