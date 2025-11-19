@@ -1,7 +1,7 @@
 import aiidalab_widgets_base as awb
 import ipywidgets as ipw
 import traitlets as tl
-from aiida.orm import SinglefileData, StructureData
+from aiida.orm import SinglefileData
 
 from aiidalab_alc.common.file_handling import FileUploadWidget
 
@@ -63,7 +63,7 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
         self.file_input_widget.children = [
             self.file_uploader,
         ]
-        ipw.dlink((self.file_uploader, "file"), (self.model, "structure_file"))
+        ipw.dlink((self.file_uploader, "file"), (self.model, "charge_density_file"))
     
     def submit_structure(self, _):
         """Submit the structure step."""

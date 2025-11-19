@@ -90,7 +90,7 @@ class WizardWidget(ipw.VBox):
             Keyword arguments passed to the `ipywidgets.VBox.__init__()`.
         """
         self.structureStep = StructureWizardStep(model.structure_model)
-        self.chargeDensityStep = ChargeDensityWizardStep(model.structure_model)
+        self.chargeDensityStep = ChargeDensityWizardStep(model.charge_density_model)
         self.workflowStep = MethodWizardStep(model.workflow_model)
         self.compResourceStep = ComputationalResourcesWizardStep(model.resource_model)
         self.results_step = ResultsWizardStep(model.results_model)
