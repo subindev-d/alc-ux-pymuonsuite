@@ -15,6 +15,7 @@ from aiidalab_alc.results import ResultsWizardStep
 from aiidalab_alc.structure import StructureWizardStep
 from aiidalab_alc.charge_density import ChargeDensityWizardStep
 from aiidalab_alc.workflow import MethodWizardStep
+from aiidalab_alc.castep_log import CATEPLogWizardStep
 
 
 class MainApp:
@@ -91,6 +92,7 @@ class WizardWidget(ipw.VBox):
         """
         self.structureStep = StructureWizardStep(model.structure_model)
         self.chargeDensityStep = ChargeDensityWizardStep(model.charge_density_model)
+        self.castepLogStep = CATEPLogWizardStep(model.castep_log_model)
         self.workflowStep = MethodWizardStep(model.workflow_model)
         self.compResourceStep = ComputationalResourcesWizardStep(model.resource_model)
         self.results_step = ResultsWizardStep(model.results_model)
@@ -99,6 +101,7 @@ class WizardWidget(ipw.VBox):
             steps=[
                 ("Select Structure", self.structureStep),
                 ("Upload Charge Density", self.chargeDensityStep),
+                ("Upload CASTEP Log File", self.castepLogStep),
                 ("Configure Workflow", self.workflowStep),
                 ("Configure Computational Resources", self.compResourceStep),
                 ("Results", self.results_step),

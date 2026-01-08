@@ -64,10 +64,11 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
             self.file_uploader,
         ]
         ipw.dlink((self.file_uploader, "file"), (self.model, "charge_density_file"))
+        self.model.observe(self._on_file_upload, "charge_density_file")
     
-    def submit_structure(self, _):
+    def submit_charge_density_file(self, _):
         """Submit the structure step."""
-        if self.model.has_file or self.model.has_structure:
+        if self.model.has_file:
             self.file_uploader.disable(True)
             self.submit_btn.disabled = True
             self.submit_btn.description = "Submitted"
@@ -99,9 +100,18 @@ class ChargeDensityWizardStep(ipw.VBox, awb.WizardAppWidgetStep):
             icon="check",
             layout={"margin": "auto", "width": "60%"},
         )
-        self.submit_btn.on_click(self.submit_structure)
+        self.submit_btn.on_click(self.submit_charge_density_file)
         self.viewer = ipw.HTML("<p>No charge density file found...</p>")
 
         self._update_children()
         self.rendered = True
+        return
+    
+    def _on_file_upload(self, change=None):
+        """When file upload button is pressed"""
+        if self.model.has_file:
+            self.viewer = ipw.HTML("<p>Charge density file uploaded.</p>")
+        else:
+            self.viewer = ipw.HTML("<p>No charge density file found...</p>")
+        self._update_children()
         return

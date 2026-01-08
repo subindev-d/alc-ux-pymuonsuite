@@ -9,6 +9,7 @@ from aiidalab_alc.resources import ComputationalResourcesModel
 from aiidalab_alc.results import ResultsModel
 from aiidalab_alc.structure import StructureStepModel
 from aiidalab_alc.charge_density import ChargeDensityStepModel
+from aiidalab_alc.castep_log import CASTEPLogModel
 from aiidalab_alc.workflow import ChemShellWorkflowModel
 
 
@@ -22,6 +23,7 @@ class MainAppModel(tl.HasTraits):
         super().__init__()
         self.structure_model = StructureStepModel()
         self.charge_density_model = ChargeDensityStepModel()
+        self.castep_log_model = CASTEPLogModel()
         self.workflow_model = ChemShellWorkflowModel()
         self.resource_model = ComputationalResourcesModel()
         self.results_model = ResultsModel()
